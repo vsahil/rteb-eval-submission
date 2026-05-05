@@ -1,0 +1,1803 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation"
+  },
+  "@type": "sc:Dataset",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "The Hugging Face git repository.",
+      "contentUrl": "https://huggingface.co/datasets/almanach/hc3_french_ood/tree/refs%2Fconvert%2Fparquet",
+      "encodingFormat": "git+https",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-faq_fr_gouv",
+      "name": "parquet-files-for-config-faq_fr_gouv",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "faq_fr_gouv/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-faq_fr_random",
+      "name": "parquet-files-for-config-faq_fr_random",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "faq_fr_random/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-hc3_en_full",
+      "name": "parquet-files-for-config-hc3_en_full",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "hc3_en_full/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-hc3_en_qa",
+      "name": "parquet-files-for-config-hc3_en_qa",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "hc3_en_qa/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-hc3_en_sentence",
+      "name": "parquet-files-for-config-hc3_en_sentence",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "hc3_en_sentence/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-hc3_fr_chatgpt_qa",
+      "name": "parquet-files-for-config-hc3_fr_chatgpt_qa",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "hc3_fr_chatgpt_qa/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-hc3_fr_full",
+      "name": "parquet-files-for-config-hc3_fr_full",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "hc3_fr_full/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-hc3_fr_qa",
+      "name": "parquet-files-for-config-hc3_fr_qa",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "hc3_fr_qa/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-hc3_fr_sentence",
+      "name": "parquet-files-for-config-hc3_fr_sentence",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "hc3_fr_sentence/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-qa_fr_binggpt",
+      "name": "parquet-files-for-config-qa_fr_binggpt",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "qa_fr_binggpt/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-qa_fr_binglikehuman",
+      "name": "parquet-files-for-config-qa_fr_binglikehuman",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "qa_fr_binglikehuman/*/*.parquet"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "faq_fr_gouv_splits/split_name"
+      },
+      "@id": "faq_fr_gouv_splits",
+      "name": "faq_fr_gouv_splits",
+      "description": "Splits for the faq_fr_gouv config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "faq_fr_gouv_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "faq_fr_gouv",
+      "name": "faq_fr_gouv",
+      "description": "almanach/hc3_french_ood - 'faq_fr_gouv' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv/split",
+          "name": "faq_fr_gouv/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_gouv"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "faq_fr_gouv/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "faq_fr_gouv_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv/id",
+          "name": "faq_fr_gouv/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_gouv"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv/page_id",
+          "name": "faq_fr_gouv/page_id",
+          "description": "Column 'page_id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_gouv"
+            },
+            "extract": {
+              "column": "page_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv/question_id",
+          "name": "faq_fr_gouv/question_id",
+          "description": "Column 'question_id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_gouv"
+            },
+            "extract": {
+              "column": "question_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv/answer_id",
+          "name": "faq_fr_gouv/answer_id",
+          "description": "Column 'answer_id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_gouv"
+            },
+            "extract": {
+              "column": "answer_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv/bucket",
+          "name": "faq_fr_gouv/bucket",
+          "description": "Column 'bucket' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_gouv"
+            },
+            "extract": {
+              "column": "bucket"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv/domain",
+          "name": "faq_fr_gouv/domain",
+          "description": "Column 'domain' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_gouv"
+            },
+            "extract": {
+              "column": "domain"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv/question",
+          "name": "faq_fr_gouv/question",
+          "description": "Column 'question' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_gouv"
+            },
+            "extract": {
+              "column": "question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv/answer",
+          "name": "faq_fr_gouv/answer",
+          "description": "Column 'answer' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_gouv"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_gouv/label",
+          "name": "faq_fr_gouv/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), CHATGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_gouv"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "faq_fr_random_splits/split_name"
+      },
+      "@id": "faq_fr_random_splits",
+      "name": "faq_fr_random_splits",
+      "description": "Splits for the faq_fr_random config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "faq_fr_random_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "faq_fr_random",
+      "name": "faq_fr_random",
+      "description": "almanach/hc3_french_ood - 'faq_fr_random' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random/split",
+          "name": "faq_fr_random/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_random"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "faq_fr_random/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "faq_fr_random_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random/id",
+          "name": "faq_fr_random/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_random"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random/page_id",
+          "name": "faq_fr_random/page_id",
+          "description": "Column 'page_id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_random"
+            },
+            "extract": {
+              "column": "page_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random/question_id",
+          "name": "faq_fr_random/question_id",
+          "description": "Column 'question_id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_random"
+            },
+            "extract": {
+              "column": "question_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random/answer_id",
+          "name": "faq_fr_random/answer_id",
+          "description": "Column 'answer_id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_random"
+            },
+            "extract": {
+              "column": "answer_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random/bucket",
+          "name": "faq_fr_random/bucket",
+          "description": "Column 'bucket' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_random"
+            },
+            "extract": {
+              "column": "bucket"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random/domain",
+          "name": "faq_fr_random/domain",
+          "description": "Column 'domain' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_random"
+            },
+            "extract": {
+              "column": "domain"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random/question",
+          "name": "faq_fr_random/question",
+          "description": "Column 'question' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_random"
+            },
+            "extract": {
+              "column": "question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random/answer",
+          "name": "faq_fr_random/answer",
+          "description": "Column 'answer' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_random"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "faq_fr_random/label",
+          "name": "faq_fr_random/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), CHATGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-faq_fr_random"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "hc3_en_full_splits/split_name"
+      },
+      "@id": "hc3_en_full_splits",
+      "name": "hc3_en_full_splits",
+      "description": "Splits for the hc3_en_full config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_full_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "hc3_en_full_splits/split_name": "train"
+        },
+        {
+          "hc3_en_full_splits/split_name": "validation"
+        },
+        {
+          "hc3_en_full_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "hc3_en_full",
+      "name": "hc3_en_full",
+      "description": "almanach/hc3_french_ood - 'hc3_en_full' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_full/split",
+          "name": "hc3_en_full/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_full"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "hc3_en_full/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "hc3_en_full_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_full/id",
+          "name": "hc3_en_full/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_full"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_full/text",
+          "name": "hc3_en_full/text",
+          "description": "Column 'text' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_full"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_full/label",
+          "name": "hc3_en_full/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), CHATGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_full"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_full/source",
+          "name": "hc3_en_full/source",
+          "description": "Column 'source' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_full"
+            },
+            "extract": {
+              "column": "source"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "hc3_en_qa_splits/split_name"
+      },
+      "@id": "hc3_en_qa_splits",
+      "name": "hc3_en_qa_splits",
+      "description": "Splits for the hc3_en_qa config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_qa_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "hc3_en_qa_splits/split_name": "train"
+        },
+        {
+          "hc3_en_qa_splits/split_name": "validation"
+        },
+        {
+          "hc3_en_qa_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "hc3_en_qa",
+      "name": "hc3_en_qa",
+      "description": "almanach/hc3_french_ood - 'hc3_en_qa' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_qa/split",
+          "name": "hc3_en_qa/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_qa"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "hc3_en_qa/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "hc3_en_qa_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_qa/id",
+          "name": "hc3_en_qa/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_qa"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_qa/question",
+          "name": "hc3_en_qa/question",
+          "description": "Column 'question' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_qa"
+            },
+            "extract": {
+              "column": "question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_qa/answer",
+          "name": "hc3_en_qa/answer",
+          "description": "Column 'answer' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_qa"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_qa/label",
+          "name": "hc3_en_qa/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), CHATGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_qa"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_qa/source",
+          "name": "hc3_en_qa/source",
+          "description": "Column 'source' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_qa"
+            },
+            "extract": {
+              "column": "source"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "hc3_en_sentence_splits/split_name"
+      },
+      "@id": "hc3_en_sentence_splits",
+      "name": "hc3_en_sentence_splits",
+      "description": "Splits for the hc3_en_sentence config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_sentence_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "hc3_en_sentence_splits/split_name": "train"
+        },
+        {
+          "hc3_en_sentence_splits/split_name": "validation"
+        },
+        {
+          "hc3_en_sentence_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "hc3_en_sentence",
+      "name": "hc3_en_sentence",
+      "description": "almanach/hc3_french_ood - 'hc3_en_sentence' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_sentence/split",
+          "name": "hc3_en_sentence/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_sentence"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "hc3_en_sentence/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "hc3_en_sentence_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_sentence/id",
+          "name": "hc3_en_sentence/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_sentence"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_sentence/text",
+          "name": "hc3_en_sentence/text",
+          "description": "Column 'text' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_sentence"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_sentence/label",
+          "name": "hc3_en_sentence/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), CHATGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_sentence"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_en_sentence/source",
+          "name": "hc3_en_sentence/source",
+          "description": "Column 'source' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_en_sentence"
+            },
+            "extract": {
+              "column": "source"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "hc3_fr_chatgpt_qa_splits/split_name"
+      },
+      "@id": "hc3_fr_chatgpt_qa_splits",
+      "name": "hc3_fr_chatgpt_qa_splits",
+      "description": "Splits for the hc3_fr_chatgpt_qa config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_chatgpt_qa_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "hc3_fr_chatgpt_qa_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "hc3_fr_chatgpt_qa",
+      "name": "hc3_fr_chatgpt_qa",
+      "description": "almanach/hc3_french_ood - 'hc3_fr_chatgpt_qa' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_chatgpt_qa/split",
+          "name": "hc3_fr_chatgpt_qa/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_chatgpt_qa"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "hc3_fr_chatgpt_qa/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "hc3_fr_chatgpt_qa_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_chatgpt_qa/id",
+          "name": "hc3_fr_chatgpt_qa/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_chatgpt_qa"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_chatgpt_qa/question",
+          "name": "hc3_fr_chatgpt_qa/question",
+          "description": "Column 'question' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_chatgpt_qa"
+            },
+            "extract": {
+              "column": "question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_chatgpt_qa/answer",
+          "name": "hc3_fr_chatgpt_qa/answer",
+          "description": "Column 'answer' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_chatgpt_qa"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_chatgpt_qa/chatgpt_answer",
+          "name": "hc3_fr_chatgpt_qa/chatgpt_answer",
+          "description": "Column 'chatgpt_answer' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_chatgpt_qa"
+            },
+            "extract": {
+              "column": "chatgpt_answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_chatgpt_qa/label",
+          "name": "hc3_fr_chatgpt_qa/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), CHATGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_chatgpt_qa"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_chatgpt_qa/source",
+          "name": "hc3_fr_chatgpt_qa/source",
+          "description": "Column 'source' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_chatgpt_qa"
+            },
+            "extract": {
+              "column": "source"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "hc3_fr_full_splits/split_name"
+      },
+      "@id": "hc3_fr_full_splits",
+      "name": "hc3_fr_full_splits",
+      "description": "Splits for the hc3_fr_full config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_full_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "hc3_fr_full_splits/split_name": "train"
+        },
+        {
+          "hc3_fr_full_splits/split_name": "validation"
+        },
+        {
+          "hc3_fr_full_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "hc3_fr_full",
+      "name": "hc3_fr_full",
+      "description": "almanach/hc3_french_ood - 'hc3_fr_full' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_full/split",
+          "name": "hc3_fr_full/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_full"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "hc3_fr_full/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "hc3_fr_full_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_full/id",
+          "name": "hc3_fr_full/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_full"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_full/text",
+          "name": "hc3_fr_full/text",
+          "description": "Column 'text' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_full"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_full/label",
+          "name": "hc3_fr_full/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), CHATGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_full"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_full/source",
+          "name": "hc3_fr_full/source",
+          "description": "Column 'source' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_full"
+            },
+            "extract": {
+              "column": "source"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "hc3_fr_qa_splits/split_name"
+      },
+      "@id": "hc3_fr_qa_splits",
+      "name": "hc3_fr_qa_splits",
+      "description": "Splits for the hc3_fr_qa config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_qa_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "hc3_fr_qa_splits/split_name": "train"
+        },
+        {
+          "hc3_fr_qa_splits/split_name": "validation"
+        },
+        {
+          "hc3_fr_qa_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "hc3_fr_qa",
+      "name": "hc3_fr_qa",
+      "description": "almanach/hc3_french_ood - 'hc3_fr_qa' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_qa/split",
+          "name": "hc3_fr_qa/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_qa"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "hc3_fr_qa/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "hc3_fr_qa_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_qa/id",
+          "name": "hc3_fr_qa/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_qa"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_qa/question",
+          "name": "hc3_fr_qa/question",
+          "description": "Column 'question' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_qa"
+            },
+            "extract": {
+              "column": "question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_qa/answer",
+          "name": "hc3_fr_qa/answer",
+          "description": "Column 'answer' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_qa"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_qa/label",
+          "name": "hc3_fr_qa/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), CHATGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_qa"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_qa/source",
+          "name": "hc3_fr_qa/source",
+          "description": "Column 'source' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_qa"
+            },
+            "extract": {
+              "column": "source"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "hc3_fr_sentence_splits/split_name"
+      },
+      "@id": "hc3_fr_sentence_splits",
+      "name": "hc3_fr_sentence_splits",
+      "description": "Splits for the hc3_fr_sentence config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_sentence_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "hc3_fr_sentence_splits/split_name": "train"
+        },
+        {
+          "hc3_fr_sentence_splits/split_name": "validation"
+        },
+        {
+          "hc3_fr_sentence_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "hc3_fr_sentence",
+      "name": "hc3_fr_sentence",
+      "description": "almanach/hc3_french_ood - 'hc3_fr_sentence' subset\n\nAdditional information:\n- 3 splits: train, validation, test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_sentence/split",
+          "name": "hc3_fr_sentence/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_sentence"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "hc3_fr_sentence/(?:partial-)?(train|validation|test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "hc3_fr_sentence_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_sentence/id",
+          "name": "hc3_fr_sentence/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_sentence"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_sentence/text",
+          "name": "hc3_fr_sentence/text",
+          "description": "Column 'text' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_sentence"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_sentence/label",
+          "name": "hc3_fr_sentence/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), CHATGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_sentence"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "hc3_fr_sentence/source",
+          "name": "hc3_fr_sentence/source",
+          "description": "Column 'source' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-hc3_fr_sentence"
+            },
+            "extract": {
+              "column": "source"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "qa_fr_binggpt_splits/split_name"
+      },
+      "@id": "qa_fr_binggpt_splits",
+      "name": "qa_fr_binggpt_splits",
+      "description": "Splits for the qa_fr_binggpt config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binggpt_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "qa_fr_binggpt_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "qa_fr_binggpt",
+      "name": "qa_fr_binggpt",
+      "description": "almanach/hc3_french_ood - 'qa_fr_binggpt' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binggpt/split",
+          "name": "qa_fr_binggpt/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binggpt"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "qa_fr_binggpt/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "qa_fr_binggpt_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binggpt/id",
+          "name": "qa_fr_binggpt/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binggpt"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binggpt/question",
+          "name": "qa_fr_binggpt/question",
+          "description": "Column 'question' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binggpt"
+            },
+            "extract": {
+              "column": "question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binggpt/answer",
+          "name": "qa_fr_binggpt/answer",
+          "description": "Column 'answer' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binggpt"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binggpt/label",
+          "name": "qa_fr_binggpt/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), BINGGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binggpt"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binggpt/deleted_clues",
+          "name": "qa_fr_binggpt/deleted_clues",
+          "description": "Column 'deleted_clues' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binggpt"
+            },
+            "extract": {
+              "column": "deleted_clues"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binggpt/deleted_sources",
+          "name": "qa_fr_binggpt/deleted_sources",
+          "description": "Column 'deleted_sources' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binggpt"
+            },
+            "extract": {
+              "column": "deleted_sources"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binggpt/remarks",
+          "name": "qa_fr_binggpt/remarks",
+          "description": "Column 'remarks' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binggpt"
+            },
+            "extract": {
+              "column": "remarks"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "qa_fr_binglikehuman_splits/split_name"
+      },
+      "@id": "qa_fr_binglikehuman_splits",
+      "name": "qa_fr_binglikehuman_splits",
+      "description": "Splits for the qa_fr_binglikehuman config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binglikehuman_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "qa_fr_binglikehuman_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "qa_fr_binglikehuman",
+      "name": "qa_fr_binglikehuman",
+      "description": "almanach/hc3_french_ood - 'qa_fr_binglikehuman' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binglikehuman/split",
+          "name": "qa_fr_binglikehuman/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binglikehuman"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "qa_fr_binglikehuman/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "qa_fr_binglikehuman_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binglikehuman/id",
+          "name": "qa_fr_binglikehuman/id",
+          "description": "Column 'id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binglikehuman"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binglikehuman/question",
+          "name": "qa_fr_binglikehuman/question",
+          "description": "Column 'question' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binglikehuman"
+            },
+            "extract": {
+              "column": "question"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binglikehuman/answer",
+          "name": "qa_fr_binglikehuman/answer",
+          "description": "Column 'answer' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binglikehuman"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binglikehuman/label",
+          "name": "qa_fr_binglikehuman/label",
+          "description": "ClassLabel column 'label' from the Hugging Face parquet file.\nLabels:\nHUMAN (0), BINGGPT (1)",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binglikehuman"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qa_fr_binglikehuman/source",
+          "name": "qa_fr_binglikehuman/source",
+          "description": "Column 'source' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qa_fr_binglikehuman"
+            },
+            "extract": {
+              "column": "source"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.1",
+    "http://mlcommons.org/croissant/1.0",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "name": "hc3_french_ood",
+  "description": "Human ChatGPT Comparison Corpus (HC3) Translated To French.\nThe translation is done by Google Translate API.\nWe also add the native french QA pairs from ChatGPT, BingGPT and FAQ pages.\n\nThis dataset was used in our TALN 2023 paper.\nTowards a Robust Detection of Language Model-Generated Text: Is ChatGPT that easy to detect?",
+  "alternateName": [
+    "almanach/hc3_french_ood"
+  ],
+  "creator": {
+    "@type": "Organization",
+    "name": "ALMAnaCH (Inria)",
+    "url": "https://huggingface.co/almanach"
+  },
+  "keywords": [
+    "text-classification",
+    "question-answering",
+    "sentence-similarity",
+    "zero-shot-classification",
+    "English",
+    "French",
+    "cc-by-sa-4.0",
+    "1M - 10M",
+    "Text",
+    "Datasets",
+    "Croissant",
+    "arxiv:2301.07597",
+    "🇺🇸 Region: US",
+    "ChatGPT",
+    "Bing",
+    "LM Detection",
+    "Detection",
+    "OOD"
+  ],
+  "license": "https://choosealicense.com/licenses/cc-by-sa-4.0/",
+  "url": "https://huggingface.co/datasets/almanach/hc3_french_ood",
+  "rai:dataLimitations": "This dataset is part of RTEB, a retrieval-focused text embedding benchmark. RTEB currently covers four languages (English, German, Japanese, French), with English being dominant. Low-resource languages and major languages like Chinese and Arabic are not represented. The benchmark is text-only and does not cover multimodal retrieval. Approximately half of the datasets are repurposed from question-answering tasks, which may introduce lexical overlap biases between queries and relevant documents, and typically yield only a single relevant document per query. This dataset is intended for evaluating retrieval embedding models and is not recommended for training embedding models, as doing so would compromise the benchmark's integrity.",
+  "rai:dataBiases": "The benchmark has a geographic and linguistic skew toward English-speaking and Western European contexts. Legal datasets are drawn from Indian, German, French, and Japanese jurisdictions, which may not generalize to other legal systems. Healthcare datasets are predominantly English-language medical dialogues, which may reflect Western medical practices. Financial datasets are English-centric and may reflect biases toward US/Western financial instruments. Code datasets are skewed toward Python and popular programming languages. The agentic code datasets inherit biases from GitHub, which overrepresents open-source projects from certain demographics and geographies.",
+  "rai:personalSensitiveInformation": "Healthcare datasets contain medical questions and dialogues that may include health-related information, though these are sourced from publicly available QA platforms and do not contain personally identifiable information. Legal datasets contain court documents that are public records. Financial datasets contain publicly available financial reports and QA pairs. No datasets contain private personal data such as names, addresses, or demographic identifiers linked to individuals.",
+  "rai:dataUseCases": "RTEB is designed to measure the retrieval accuracy of text embedding models across diverse real-world domains. The construct being measured is a model's ability to rank relevant documents highly for a given query, as captured by NDCG@10 and Recall at various cutoffs. Validity has been established for: evaluating and comparing embedding models for retrieval tasks, identifying domain-specific weaknesses, and measuring generalization to unseen data via the private dataset partition. Validity has not been established for: evaluating embedding models on non-retrieval tasks, evaluating multimodal models, or predicting production performance in specific enterprise settings.",
+  "rai:dataSocialImpact": "Positive: RTEB provides a more reliable benchmark for embedding model evaluation, reducing the risk that practitioners deploy models based on inflated benchmark scores. By keeping datasets private, it discourages overfitting and promotes genuine progress in retrieval quality. The inclusion of specialized domains (legal, healthcare, finance) encourages development of models that serve high-stakes applications. Negative: Benchmark results could be misinterpreted as definitive measures of model quality in production settings. Models that perform well on RTEB may still fail in specific deployment contexts.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": "https://huggingface.co/datasets/almanach/hc3_french_ood",
+  "prov:wasGeneratedBy": {
+    "preprocessing": "For QA-repurposed datasets, questions were extracted as queries and context passages as documents. For agentic code datasets, GitHub issues (title + body) were extracted as queries, and repository files were used as the document corpus. Filtering criteria were applied: issues shorter than 10 characters were removed, and issues where all edited files were newly created were excluded. A subset of datasets was manually verified by the authors for accuracy and label quality.",
+    "data_collection": "Public datasets were sourced from HuggingFace. Private datasets were curated from publicly available sources including government legal repositories (e.g., Japanese e-Gov, French OPENDATA/JADE), medical dialogue corpora, financial QA datasets, and GitHub repositories. The agentic code datasets were derived from existing SWE-bench style benchmarks collected by mining GitHub issues or generating synthetic bugs.",
+    "data_annotation": "Most datasets retain the original annotations from their source. For repurposed QA datasets, relevance labels are derived from the original QA pairs — the context passage associated with a question is treated as the relevant document. Several private datasets underwent additional manual verification by the authors. No new crowd-sourced annotation was performed."
+  }
+}

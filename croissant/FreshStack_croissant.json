@@ -1,0 +1,1290 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "isArray": "cr:isArray",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
+    "containedIn": "cr:containedIn"
+  },
+  "@type": "sc:Dataset",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "The Hugging Face git repository.",
+      "contentUrl": "https://huggingface.co/datasets/freshstack/queries-oct-2024/tree/refs%2Fconvert%2Fparquet",
+      "encodingFormat": "git+https",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-angular",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "angular/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-godot",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "godot/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-langchain",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "langchain/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-laravel",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "laravel/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-yolo",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "yolo/*/*.parquet"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "angular_splits/split_name"
+      },
+      "@id": "angular_splits",
+      "name": "angular_splits",
+      "description": "Splits for the angular config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "angular_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "angular_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "angular",
+      "description": "freshstack/queries-oct-2024 - 'angular' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "angular/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-angular"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "angular/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "angular_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "angular/query_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-angular"
+            },
+            "extract": {
+              "column": "query_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "angular/query_title",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-angular"
+            },
+            "extract": {
+              "column": "query_title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "angular/query_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-angular"
+            },
+            "extract": {
+              "column": "query_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "angular/nuggets",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "angular/nuggets/_id",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-angular"
+                },
+                "extract": {
+                  "column": "nuggets"
+                },
+                "transform": {
+                  "jsonPath": "_id"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "angular/nuggets/non_relevant_corpus_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-angular"
+                },
+                "extract": {
+                  "column": "nuggets"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "angular/nuggets/relevant_corpus_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-angular"
+                },
+                "extract": {
+                  "column": "nuggets"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "angular/nuggets/text",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-angular"
+                },
+                "extract": {
+                  "column": "nuggets"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            }
+          ],
+          "isArray": true,
+          "arrayShape": "-1",
+          "name": "nuggets",
+          "description": "GPT-4o generated nuggets with nugget id, text, relevant_corpus_ids, and non_relevant_corpus_ids.",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "angular/answer_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-angular"
+            },
+            "extract": {
+              "column": "answer_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "angular/answer_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-angular"
+            },
+            "extract": {
+              "column": "answer_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "angular/metadata",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "angular/metadata/date",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-angular"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "date"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "angular/metadata/tags",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-angular"
+                },
+                "extract": {
+                  "column": "metadata"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            }
+          ],
+          "name": "metadata",
+          "description": "Additional FreshStack example metadata for the topic.",
+          "dataType": "sc:Text"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "godot_splits/split_name"
+      },
+      "@id": "godot_splits",
+      "name": "godot_splits",
+      "description": "Splits for the godot config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "godot_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "godot_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "godot",
+      "description": "freshstack/queries-oct-2024 - 'godot' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "godot/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-godot"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "godot/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "godot_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "godot/query_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-godot"
+            },
+            "extract": {
+              "column": "query_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "godot/query_title",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-godot"
+            },
+            "extract": {
+              "column": "query_title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "godot/query_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-godot"
+            },
+            "extract": {
+              "column": "query_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "godot/nuggets",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "godot/nuggets/_id",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-godot"
+                },
+                "extract": {
+                  "column": "nuggets"
+                },
+                "transform": {
+                  "jsonPath": "_id"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "godot/nuggets/non_relevant_corpus_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-godot"
+                },
+                "extract": {
+                  "column": "nuggets"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "godot/nuggets/relevant_corpus_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-godot"
+                },
+                "extract": {
+                  "column": "nuggets"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "godot/nuggets/text",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-godot"
+                },
+                "extract": {
+                  "column": "nuggets"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            }
+          ],
+          "isArray": true,
+          "arrayShape": "-1",
+          "name": "nuggets",
+          "description": "GPT-4o generated nuggets with nugget id, text, relevant_corpus_ids, and non_relevant_corpus_ids.",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "godot/answer_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-godot"
+            },
+            "extract": {
+              "column": "answer_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "godot/answer_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-godot"
+            },
+            "extract": {
+              "column": "answer_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "godot/metadata",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "godot/metadata/date",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-godot"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "date"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "godot/metadata/tags",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-godot"
+                },
+                "extract": {
+                  "column": "metadata"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            }
+          ],
+          "name": "metadata",
+          "description": "Additional FreshStack example metadata for the topic.",
+          "dataType": "sc:Text"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "langchain_splits/split_name"
+      },
+      "@id": "langchain_splits",
+      "name": "langchain_splits",
+      "description": "Splits for the langchain config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "langchain_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "langchain_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "langchain",
+      "description": "freshstack/queries-oct-2024 - 'langchain' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "langchain/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-langchain"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "langchain/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "langchain_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "langchain/query_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-langchain"
+            },
+            "extract": {
+              "column": "query_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "langchain/query_title",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-langchain"
+            },
+            "extract": {
+              "column": "query_title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "langchain/query_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-langchain"
+            },
+            "extract": {
+              "column": "query_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "langchain/nuggets",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "langchain/nuggets/_id",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-langchain"
+                },
+                "extract": {
+                  "column": "nuggets"
+                },
+                "transform": {
+                  "jsonPath": "_id"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "langchain/nuggets/non_relevant_corpus_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-langchain"
+                },
+                "extract": {
+                  "column": "nuggets"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "langchain/nuggets/relevant_corpus_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-langchain"
+                },
+                "extract": {
+                  "column": "nuggets"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "langchain/nuggets/text",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-langchain"
+                },
+                "extract": {
+                  "column": "nuggets"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            }
+          ],
+          "isArray": true,
+          "arrayShape": "-1",
+          "name": "nuggets",
+          "description": "GPT-4o generated nuggets with nugget id, text, relevant_corpus_ids, and non_relevant_corpus_ids.",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "langchain/answer_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-langchain"
+            },
+            "extract": {
+              "column": "answer_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "langchain/answer_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-langchain"
+            },
+            "extract": {
+              "column": "answer_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "langchain/metadata",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "langchain/metadata/date",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-langchain"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "date"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "langchain/metadata/tags",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-langchain"
+                },
+                "extract": {
+                  "column": "metadata"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            }
+          ],
+          "name": "metadata",
+          "description": "Additional FreshStack example metadata for the topic.",
+          "dataType": "sc:Text"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "laravel_splits/split_name"
+      },
+      "@id": "laravel_splits",
+      "name": "laravel_splits",
+      "description": "Splits for the laravel config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "laravel_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "laravel_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "laravel",
+      "description": "freshstack/queries-oct-2024 - 'laravel' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "laravel/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-laravel"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "laravel/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "laravel_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "laravel/query_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-laravel"
+            },
+            "extract": {
+              "column": "query_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "laravel/query_title",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-laravel"
+            },
+            "extract": {
+              "column": "query_title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "laravel/query_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-laravel"
+            },
+            "extract": {
+              "column": "query_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "laravel/nuggets",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "laravel/nuggets/_id",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-laravel"
+                },
+                "extract": {
+                  "column": "nuggets"
+                },
+                "transform": {
+                  "jsonPath": "_id"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "laravel/nuggets/non_relevant_corpus_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-laravel"
+                },
+                "extract": {
+                  "column": "nuggets"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "laravel/nuggets/relevant_corpus_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-laravel"
+                },
+                "extract": {
+                  "column": "nuggets"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "laravel/nuggets/text",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-laravel"
+                },
+                "extract": {
+                  "column": "nuggets"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            }
+          ],
+          "isArray": true,
+          "arrayShape": "-1",
+          "name": "nuggets",
+          "description": "GPT-4o generated nuggets with nugget id, text, relevant_corpus_ids, and non_relevant_corpus_ids.",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "laravel/answer_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-laravel"
+            },
+            "extract": {
+              "column": "answer_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "laravel/answer_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-laravel"
+            },
+            "extract": {
+              "column": "answer_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "laravel/metadata",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "laravel/metadata/date",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-laravel"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "date"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "laravel/metadata/tags",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-laravel"
+                },
+                "extract": {
+                  "column": "metadata"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            }
+          ],
+          "name": "metadata",
+          "description": "Additional FreshStack example metadata for the topic.",
+          "dataType": "sc:Text"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "yolo_splits/split_name"
+      },
+      "@id": "yolo_splits",
+      "name": "yolo_splits",
+      "description": "Splits for the yolo config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "yolo_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "yolo_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "yolo",
+      "description": "freshstack/queries-oct-2024 - 'yolo' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "yolo/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-yolo"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "yolo/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "yolo_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yolo/query_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-yolo"
+            },
+            "extract": {
+              "column": "query_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yolo/query_title",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-yolo"
+            },
+            "extract": {
+              "column": "query_title"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yolo/query_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-yolo"
+            },
+            "extract": {
+              "column": "query_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yolo/nuggets",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "yolo/nuggets/_id",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-yolo"
+                },
+                "extract": {
+                  "column": "nuggets"
+                },
+                "transform": {
+                  "jsonPath": "_id"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "yolo/nuggets/non_relevant_corpus_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-yolo"
+                },
+                "extract": {
+                  "column": "nuggets"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "yolo/nuggets/relevant_corpus_ids",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-yolo"
+                },
+                "extract": {
+                  "column": "nuggets"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "yolo/nuggets/text",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-yolo"
+                },
+                "extract": {
+                  "column": "nuggets"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            }
+          ],
+          "isArray": true,
+          "arrayShape": "-1",
+          "name": "nuggets",
+          "description": "GPT-4o generated nuggets with nugget id, text, relevant_corpus_ids, and non_relevant_corpus_ids.",
+          "dataType": "sc:Text"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yolo/answer_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-yolo"
+            },
+            "extract": {
+              "column": "answer_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yolo/answer_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-yolo"
+            },
+            "extract": {
+              "column": "answer_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "yolo/metadata",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "yolo/metadata/date",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-yolo"
+                },
+                "extract": {
+                  "column": "metadata"
+                },
+                "transform": {
+                  "jsonPath": "date"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "yolo/metadata/tags",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-yolo"
+                },
+                "extract": {
+                  "column": "metadata"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            }
+          ],
+          "name": "metadata",
+          "description": "Additional FreshStack example metadata for the topic.",
+          "dataType": "sc:Text"
+        }
+      ]
+    }
+  ],
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.1",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "name": "queries-oct-2024",
+  "description": "\n\t\n\t\t\n\t\tDataset Card for FreshStack (Queries, Answers, Nuggets and Nugget-level Judgments)\n\t\n\n\n\t\n\t\t\n\t\tDataset Description\n\t\n\nHomepage | \nRepository |\nPaper |\nArXiv\nFreshStack is a holistic framework to construct challenging IR/RAG evaluation datasets that focuses on search across niche and recent topics.\nThis dataset (October 2024) contains the query, nuggets, answers and nugget-level relevance judgments of 5 niche topics focused on software engineering and machine learning. \nThe queries and… See the full description on the dataset page: https://huggingface.co/datasets/freshstack/queries-oct-2024.",
+  "alternateName": [
+    "freshstack/queries-oct-2024"
+  ],
+  "creator": {
+    "@type": "Organization",
+    "name": "FreshStack",
+    "url": "https://huggingface.co/freshstack"
+  },
+  "keywords": [
+    "question-answering",
+    "cc-by-sa-4.0",
+    "< 1K",
+    "parquet",
+    "Text",
+    "Datasets",
+    "pandas",
+    "Croissant",
+    "Polars",
+    "arxiv:2504.13128",
+    "🇺🇸 Region: US"
+  ],
+  "license": "https://choosealicense.com/licenses/cc-by-sa-4.0/",
+  "url": "https://huggingface.co/datasets/freshstack/queries-oct-2024",
+  "rai:dataLimitations": "This dataset is part of RTEB, a retrieval-focused text embedding benchmark. RTEB currently covers four languages (English, German, Japanese, French), with English being dominant. Low-resource languages and major languages like Chinese and Arabic are not represented. The benchmark is text-only and does not cover multimodal retrieval. Approximately half of the datasets are repurposed from question-answering tasks, which may introduce lexical overlap biases between queries and relevant documents, and typically yield only a single relevant document per query. This dataset is intended for evaluating retrieval embedding models and is not recommended for training embedding models, as doing so would compromise the benchmark's integrity.",
+  "rai:dataBiases": "The benchmark has a geographic and linguistic skew toward English-speaking and Western European contexts. Legal datasets are drawn from Indian, German, French, and Japanese jurisdictions, which may not generalize to other legal systems. Healthcare datasets are predominantly English-language medical dialogues, which may reflect Western medical practices. Financial datasets are English-centric and may reflect biases toward US/Western financial instruments. Code datasets are skewed toward Python and popular programming languages. The agentic code datasets inherit biases from GitHub, which overrepresents open-source projects from certain demographics and geographies.",
+  "rai:personalSensitiveInformation": "Healthcare datasets contain medical questions and dialogues that may include health-related information, though these are sourced from publicly available QA platforms and do not contain personally identifiable information. Legal datasets contain court documents that are public records. Financial datasets contain publicly available financial reports and QA pairs. No datasets contain private personal data such as names, addresses, or demographic identifiers linked to individuals.",
+  "rai:dataUseCases": "RTEB is designed to measure the retrieval accuracy of text embedding models across diverse real-world domains. The construct being measured is a model's ability to rank relevant documents highly for a given query, as captured by NDCG@10 and Recall at various cutoffs. Validity has been established for: evaluating and comparing embedding models for retrieval tasks, identifying domain-specific weaknesses, and measuring generalization to unseen data via the private dataset partition. Validity has not been established for: evaluating embedding models on non-retrieval tasks, evaluating multimodal models, or predicting production performance in specific enterprise settings.",
+  "rai:dataSocialImpact": "Positive: RTEB provides a more reliable benchmark for embedding model evaluation, reducing the risk that practitioners deploy models based on inflated benchmark scores. By keeping datasets private, it discourages overfitting and promotes genuine progress in retrieval quality. The inclusion of specialized domains (legal, healthcare, finance) encourages development of models that serve high-stakes applications. Negative: Benchmark results could be misinterpreted as definitive measures of model quality in production settings. Models that perform well on RTEB may still fail in specific deployment contexts.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": "https://huggingface.co/datasets/freshstack/queries-oct-2024",
+  "prov:wasGeneratedBy": {
+    "preprocessing": "For QA-repurposed datasets, questions were extracted as queries and context passages as documents. For agentic code datasets, GitHub issues (title + body) were extracted as queries, and repository files were used as the document corpus. Filtering criteria were applied: issues shorter than 10 characters were removed, and issues where all edited files were newly created were excluded. A subset of datasets was manually verified by the authors for accuracy and label quality.",
+    "data_collection": "Public datasets were sourced from HuggingFace. Private datasets were curated from publicly available sources including government legal repositories (e.g., Japanese e-Gov, French OPENDATA/JADE), medical dialogue corpora, financial QA datasets, and GitHub repositories. The agentic code datasets were derived from existing SWE-bench style benchmarks collected by mining GitHub issues or generating synthetic bugs.",
+    "data_annotation": "Most datasets retain the original annotations from their source. For repurposed QA datasets, relevance labels are derived from the original QA pairs — the context passage associated with a question is treated as the relevant document. Several private datasets underwent additional manual verification by the authors. No new crowd-sourced annotation was performed."
+  }
+}

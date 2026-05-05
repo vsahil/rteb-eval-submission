@@ -1,0 +1,127 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#"
+  },
+  "@type": "sc:Dataset",
+  "name": "PRIVATE_DATASET_5",
+  "description": "A private finance retrieval dataset that is part of RTEB's private evaluation partition.",
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.1",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "license": "This dataset is part of RTEB's private evaluation partition and is not publicly released. Access is restricted to the RTEB evaluation server to prevent data leakage and benchmark overfitting.",
+  "keywords": [
+    "RTEB",
+    "retrieval",
+    "embedding",
+    "benchmark",
+    "private",
+    "finance"
+  ],
+  "url": "https://huggingface.co/spaces/embedding-benchmark/RTEB",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "private-data",
+      "name": "private-data",
+      "description": "Data are derived from publicly available sources, but the exact source files and URIs are not disclosed. Evaluation is performed server-side via the RTEB submission process.",
+      "contentUrl": "https://huggingface.co/spaces/embedding-benchmark/RTEB",
+      "encodingFormat": "application/json",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "retrieval-pairs",
+      "name": "retrieval-pairs",
+      "description": "Query-document retrieval pairs. Schema details are withheld to preserve the integrity of private evaluation.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "retrieval-pairs/query",
+          "name": "query",
+          "description": "The retrieval query.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "private-data"
+            },
+            "extract": {
+              "jsonPath": "$.query"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "retrieval-pairs/document",
+          "name": "document",
+          "description": "The target document to be retrieved.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "private-data"
+            },
+            "extract": {
+              "jsonPath": "$.document"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "rai:dataLimitations": "This dataset is part of RTEB, a retrieval-focused text embedding benchmark. RTEB currently covers four languages (English, German, Japanese, French), with English being dominant. Low-resource languages and major languages like Chinese and Arabic are not represented. The benchmark is text-only and does not cover multimodal retrieval. Approximately half of the datasets are repurposed from question-answering tasks, which may introduce lexical overlap biases between queries and relevant documents, and typically yield only a single relevant document per query. This dataset is intended for evaluating retrieval embedding models and is not recommended for training embedding models, as doing so would compromise the benchmark's integrity.",
+  "rai:dataBiases": "The benchmark has a geographic and linguistic skew toward English-speaking and Western European contexts. Legal datasets are drawn from Indian, German, French, and Japanese jurisdictions, which may not generalize to other legal systems. Healthcare datasets are predominantly English-language medical dialogues, which may reflect Western medical practices. Financial datasets are English-centric and may reflect biases toward US/Western financial instruments. Code datasets are skewed toward Python and popular programming languages. The agentic code datasets inherit biases from GitHub, which overrepresents open-source projects from certain demographics and geographies.",
+  "rai:personalSensitiveInformation": "Healthcare datasets contain medical questions and dialogues that may include health-related information, though these are sourced from publicly available QA platforms and do not contain personally identifiable information. Legal datasets contain court documents that are public records. Financial datasets contain publicly available financial reports and QA pairs. No datasets contain private personal data such as names, addresses, or demographic identifiers linked to individuals.",
+  "rai:dataUseCases": "RTEB is designed to measure the retrieval accuracy of text embedding models across diverse real-world domains. The construct being measured is a model's ability to rank relevant documents highly for a given query, as captured by NDCG@10 and Recall at various cutoffs. Validity has been established for: evaluating and comparing embedding models for retrieval tasks, identifying domain-specific weaknesses, and measuring generalization to unseen data via the private dataset partition. Validity has not been established for: evaluating embedding models on non-retrieval tasks, evaluating multimodal models, or predicting production performance in specific enterprise settings.",
+  "rai:dataSocialImpact": "Positive: RTEB provides a more reliable benchmark for embedding model evaluation, reducing the risk that practitioners deploy models based on inflated benchmark scores. By keeping datasets private, it discourages overfitting and promotes genuine progress in retrieval quality. The inclusion of specialized domains (legal, healthcare, finance) encourages development of models that serve high-stakes applications. Negative: Benchmark results could be misinterpreted as definitive measures of model quality in production settings. Models that perform well on RTEB may still fail in specific deployment contexts.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": "Derived from publicly available sources. Specific URIs are withheld to preserve the integrity of RTEB's private evaluation partition.",
+  "prov:wasGeneratedBy": {
+    "preprocessing": "For QA-repurposed datasets, questions were extracted as queries and context passages as documents. For agentic code datasets, GitHub issues (title + body) were extracted as queries, and repository files were used as the document corpus. Filtering criteria were applied: issues shorter than 10 characters were removed, and issues where all edited files were newly created were excluded. A subset of datasets was manually verified by the authors for accuracy and label quality.",
+    "data_collection": "Public datasets were sourced from HuggingFace. Private datasets were curated from publicly available sources including government legal repositories (e.g., Japanese e-Gov, French OPENDATA/JADE), medical dialogue corpora, financial QA datasets, and GitHub repositories. The agentic code datasets were derived from existing SWE-bench style benchmarks collected by mining GitHub issues or generating synthetic bugs.",
+    "data_annotation": "Most datasets retain the original annotations from their source. For repurposed QA datasets, relevance labels are derived from the original QA pairs — the context passage associated with a question is treated as the relevant document. Several private datasets underwent additional manual verification by the authors. No new crowd-sourced annotation was performed."
+  }
+}

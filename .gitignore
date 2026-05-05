@@ -1,0 +1,39 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+.env
+.venv
+venv/
+env/
+
+# Generated evaluation artifacts.
+results/
+outputs/
+predictions/
+embeddings/
+validation_logs/
+croissant_output/
+*.log
+*.out
+
+# Local caches and downloaded datasets.
+.cache/
+cache/
+data/
+
+# Model/checkpoint artifacts.
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+*.pth

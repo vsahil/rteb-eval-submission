@@ -1,0 +1,832 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation"
+  },
+  "@type": "sc:Dataset",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "The Hugging Face git repository.",
+      "contentUrl": "https://huggingface.co/datasets/clinia/CUREv1/tree/refs%2Fconvert%2Fparquet",
+      "encodingFormat": "git+https",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-corpus",
+      "name": "parquet-files-for-config-corpus",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "corpus/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-qrels",
+      "name": "parquet-files-for-config-qrels",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "qrels/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-queries-en",
+      "name": "parquet-files-for-config-queries-en",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "queries-en/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-queries-es",
+      "name": "parquet-files-for-config-queries-es",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "queries-es/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-queries-fr",
+      "name": "parquet-files-for-config-queries-fr",
+      "description": "The underlying Parquet files as converted by Hugging Face (see: https://huggingface.co/docs/dataset-viewer/parquet).",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "queries-fr/*/*.parquet"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "corpus_splits/split_name"
+      },
+      "@id": "corpus_splits",
+      "name": "corpus_splits",
+      "description": "Splits for the corpus config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "corpus_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "corpus_splits/split_name": "dentistry_and_oral_health"
+        },
+        {
+          "corpus_splits/split_name": "dermatology"
+        },
+        {
+          "corpus_splits/split_name": "gastroenterology"
+        },
+        {
+          "corpus_splits/split_name": "genetics"
+        },
+        {
+          "corpus_splits/split_name": "neuroscience_and_neurology"
+        },
+        {
+          "corpus_splits/split_name": "orthopedic_surgery"
+        },
+        {
+          "corpus_splits/split_name": "otorhinolaryngology"
+        },
+        {
+          "corpus_splits/split_name": "plastic_surgery"
+        },
+        {
+          "corpus_splits/split_name": "psychiatry_and_psychology"
+        },
+        {
+          "corpus_splits/split_name": "pulmonology"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "corpus",
+      "name": "corpus",
+      "description": "clinia/CUREv1 - 'corpus' subset\n\nAdditional information:\n- 10 splits: dentistry_and_oral_health, dermatology, gastroenterology, genetics, neuroscience_and_neurology, orthopedic_surgery, otorhinolaryngology, plastic_surgery, psychiatry_and_psychology, pulmonology",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "corpus/split",
+          "name": "corpus/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-corpus"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "corpus/(?:partial-)?(dentistry_and_oral_health|dermatology|gastroenterology|genetics|neuroscience_and_neurology|orthopedic_surgery|otorhinolaryngology|plastic_surgery|psychiatry_and_psychology|pulmonology)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "corpus_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "corpus/_id",
+          "name": "corpus/_id",
+          "description": "Column '_id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-corpus"
+            },
+            "extract": {
+              "column": "_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "corpus/text",
+          "name": "corpus/text",
+          "description": "Column 'text' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-corpus"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "corpus/title",
+          "name": "corpus/title",
+          "description": "Column 'title' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-corpus"
+            },
+            "extract": {
+              "column": "title"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "qrels_splits/split_name"
+      },
+      "@id": "qrels_splits",
+      "name": "qrels_splits",
+      "description": "Splits for the qrels config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "qrels_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "qrels_splits/split_name": "dentistry_and_oral_health"
+        },
+        {
+          "qrels_splits/split_name": "dermatology"
+        },
+        {
+          "qrels_splits/split_name": "gastroenterology"
+        },
+        {
+          "qrels_splits/split_name": "genetics"
+        },
+        {
+          "qrels_splits/split_name": "neuroscience_and_neurology"
+        },
+        {
+          "qrels_splits/split_name": "orthopedic_surgery"
+        },
+        {
+          "qrels_splits/split_name": "otorhinolaryngology"
+        },
+        {
+          "qrels_splits/split_name": "plastic_surgery"
+        },
+        {
+          "qrels_splits/split_name": "psychiatry_and_psychology"
+        },
+        {
+          "qrels_splits/split_name": "pulmonology"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "qrels",
+      "name": "qrels",
+      "description": "clinia/CUREv1 - 'qrels' subset\n\nAdditional information:\n- 10 splits: dentistry_and_oral_health, dermatology, gastroenterology, genetics, neuroscience_and_neurology, orthopedic_surgery, otorhinolaryngology, plastic_surgery, psychiatry_and_psychology, pulmonology",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "qrels/split",
+          "name": "qrels/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qrels"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "qrels/(?:partial-)?(dentistry_and_oral_health|dermatology|gastroenterology|genetics|neuroscience_and_neurology|orthopedic_surgery|otorhinolaryngology|plastic_surgery|psychiatry_and_psychology|pulmonology)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "qrels_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qrels/query-id",
+          "name": "qrels/query-id",
+          "description": "Column 'query-id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qrels"
+            },
+            "extract": {
+              "column": "query-id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qrels/corpus-id",
+          "name": "qrels/corpus-id",
+          "description": "Column 'corpus-id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qrels"
+            },
+            "extract": {
+              "column": "corpus-id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qrels/score",
+          "name": "qrels/score",
+          "description": "Column 'score' from the Hugging Face parquet file.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qrels"
+            },
+            "extract": {
+              "column": "score"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qrels/judge",
+          "name": "qrels/judge",
+          "description": "Column 'judge' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qrels"
+            },
+            "extract": {
+              "column": "judge"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "qrels/explanation",
+          "name": "qrels/explanation",
+          "description": "Column 'explanation' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-qrels"
+            },
+            "extract": {
+              "column": "explanation"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "queries-en_splits/split_name"
+      },
+      "@id": "queries-en_splits",
+      "name": "queries-en_splits",
+      "description": "Splits for the queries-en config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "queries-en_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "queries-en_splits/split_name": "dentistry_and_oral_health"
+        },
+        {
+          "queries-en_splits/split_name": "dermatology"
+        },
+        {
+          "queries-en_splits/split_name": "gastroenterology"
+        },
+        {
+          "queries-en_splits/split_name": "genetics"
+        },
+        {
+          "queries-en_splits/split_name": "neuroscience_and_neurology"
+        },
+        {
+          "queries-en_splits/split_name": "orthopedic_surgery"
+        },
+        {
+          "queries-en_splits/split_name": "otorhinolaryngology"
+        },
+        {
+          "queries-en_splits/split_name": "plastic_surgery"
+        },
+        {
+          "queries-en_splits/split_name": "psychiatry_and_psychology"
+        },
+        {
+          "queries-en_splits/split_name": "pulmonology"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "queries-en",
+      "name": "queries-en",
+      "description": "clinia/CUREv1 - 'queries-en' subset\n\nAdditional information:\n- 10 splits: dentistry_and_oral_health, dermatology, gastroenterology, genetics, neuroscience_and_neurology, orthopedic_surgery, otorhinolaryngology, plastic_surgery, psychiatry_and_psychology, pulmonology",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "queries-en/split",
+          "name": "queries-en/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-en"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "queries\\-en/(?:partial-)?(dentistry_and_oral_health|dermatology|gastroenterology|genetics|neuroscience_and_neurology|orthopedic_surgery|otorhinolaryngology|plastic_surgery|psychiatry_and_psychology|pulmonology)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "queries-en_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "queries-en/_id",
+          "name": "queries-en/_id",
+          "description": "Column '_id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-en"
+            },
+            "extract": {
+              "column": "_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "queries-en/text",
+          "name": "queries-en/text",
+          "description": "Column 'text' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-en"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "queries-en/expertise",
+          "name": "queries-en/expertise",
+          "description": "Column 'expertise' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-en"
+            },
+            "extract": {
+              "column": "expertise"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "queries-es_splits/split_name"
+      },
+      "@id": "queries-es_splits",
+      "name": "queries-es_splits",
+      "description": "Splits for the queries-es config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "queries-es_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "queries-es_splits/split_name": "dentistry_and_oral_health"
+        },
+        {
+          "queries-es_splits/split_name": "dermatology"
+        },
+        {
+          "queries-es_splits/split_name": "gastroenterology"
+        },
+        {
+          "queries-es_splits/split_name": "genetics"
+        },
+        {
+          "queries-es_splits/split_name": "neuroscience_and_neurology"
+        },
+        {
+          "queries-es_splits/split_name": "orthopedic_surgery"
+        },
+        {
+          "queries-es_splits/split_name": "otorhinolaryngology"
+        },
+        {
+          "queries-es_splits/split_name": "plastic_surgery"
+        },
+        {
+          "queries-es_splits/split_name": "psychiatry_and_psychology"
+        },
+        {
+          "queries-es_splits/split_name": "pulmonology"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "queries-es",
+      "name": "queries-es",
+      "description": "clinia/CUREv1 - 'queries-es' subset\n\nAdditional information:\n- 10 splits: dentistry_and_oral_health, dermatology, gastroenterology, genetics, neuroscience_and_neurology, orthopedic_surgery, otorhinolaryngology, plastic_surgery, psychiatry_and_psychology, pulmonology",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "queries-es/split",
+          "name": "queries-es/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-es"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "queries\\-es/(?:partial-)?(dentistry_and_oral_health|dermatology|gastroenterology|genetics|neuroscience_and_neurology|orthopedic_surgery|otorhinolaryngology|plastic_surgery|psychiatry_and_psychology|pulmonology)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "queries-es_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "queries-es/_id",
+          "name": "queries-es/_id",
+          "description": "Column '_id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-es"
+            },
+            "extract": {
+              "column": "_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "queries-es/text",
+          "name": "queries-es/text",
+          "description": "Column 'text' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-es"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "queries-es/expertise",
+          "name": "queries-es/expertise",
+          "description": "Column 'expertise' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-es"
+            },
+            "extract": {
+              "column": "expertise"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "queries-fr_splits/split_name"
+      },
+      "@id": "queries-fr_splits",
+      "name": "queries-fr_splits",
+      "description": "Splits for the queries-fr config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "queries-fr_splits/split_name",
+          "name": "split_name",
+          "description": "The name of the split.",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "queries-fr_splits/split_name": "dentistry_and_oral_health"
+        },
+        {
+          "queries-fr_splits/split_name": "dermatology"
+        },
+        {
+          "queries-fr_splits/split_name": "gastroenterology"
+        },
+        {
+          "queries-fr_splits/split_name": "genetics"
+        },
+        {
+          "queries-fr_splits/split_name": "neuroscience_and_neurology"
+        },
+        {
+          "queries-fr_splits/split_name": "orthopedic_surgery"
+        },
+        {
+          "queries-fr_splits/split_name": "otorhinolaryngology"
+        },
+        {
+          "queries-fr_splits/split_name": "plastic_surgery"
+        },
+        {
+          "queries-fr_splits/split_name": "psychiatry_and_psychology"
+        },
+        {
+          "queries-fr_splits/split_name": "pulmonology"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "queries-fr",
+      "name": "queries-fr",
+      "description": "clinia/CUREv1 - 'queries-fr' subset\n\nAdditional information:\n- 10 splits: dentistry_and_oral_health, dermatology, gastroenterology, genetics, neuroscience_and_neurology, orthopedic_surgery, otorhinolaryngology, plastic_surgery, psychiatry_and_psychology, pulmonology",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "queries-fr/split",
+          "name": "queries-fr/split",
+          "description": "Split to which the example belongs to.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-fr"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "queries\\-fr/(?:partial-)?(dentistry_and_oral_health|dermatology|gastroenterology|genetics|neuroscience_and_neurology|orthopedic_surgery|otorhinolaryngology|plastic_surgery|psychiatry_and_psychology|pulmonology)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "queries-fr_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "queries-fr/_id",
+          "name": "queries-fr/_id",
+          "description": "Column '_id' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-fr"
+            },
+            "extract": {
+              "column": "_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "queries-fr/text",
+          "name": "queries-fr/text",
+          "description": "Column 'text' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-fr"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "queries-fr/expertise",
+          "name": "queries-fr/expertise",
+          "description": "Column 'expertise' from the Hugging Face parquet file.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-queries-fr"
+            },
+            "extract": {
+              "column": "expertise"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.1",
+    "http://mlcommons.org/croissant/1.0",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "name": "CUREv1",
+  "identifier": "10.57967/hf/3598",
+  "description": "\n\t\n\t\t\n\t\tDataset Card for CUREv1\n\t\n\nClinia's CURE, Clinical Understanding & Retrieval Evaluation\nEvaluate your retriever’s performance on query-passage pairs curated by medical professionals, across 10 disciplines and 3 cross-lingual settings.\n\n\t\n\t\t\n\t\tDataset Details\n\t\n\n\n\t\n\t\t\n\t\tUses\n\t\n\n\n\t\n\t\t\n\t\tDirect Use\n\t\n\nYou can use the following code to load the dataset:\nfrom datasets import load_dataset\n\nlanguage_setting = \"en\"\ndomain = \"dermatology\" # NOTE: If you don’t specify a domain, all domains will… See the full description on the dataset page: https://huggingface.co/datasets/clinia/CUREv1.",
+  "alternateName": [
+    "clinia/CUREv1",
+    "CURE"
+  ],
+  "creator": {
+    "@type": "Organization",
+    "name": "Clinia",
+    "url": "https://huggingface.co/clinia"
+  },
+  "keywords": [
+    "text-retrieval",
+    "expert-generated",
+    "English",
+    "Spanish",
+    "French",
+    "cc-by-nc-4.0",
+    "100K - 1M",
+    "json",
+    "Text",
+    "Datasets",
+    "pandas",
+    "Croissant",
+    "Polars",
+    "arxiv:2412.06954",
+    "doi:10.57967/hf/3598",
+    "🇺🇸 Region: US",
+    "medical"
+  ],
+  "license": "https://choosealicense.com/licenses/cc-by-nc-4.0/",
+  "url": "https://huggingface.co/datasets/clinia/CUREv1",
+  "rai:dataLimitations": "This dataset is part of RTEB, a retrieval-focused text embedding benchmark. RTEB currently covers four languages (English, German, Japanese, French), with English being dominant. Low-resource languages and major languages like Chinese and Arabic are not represented. The benchmark is text-only and does not cover multimodal retrieval. Approximately half of the datasets are repurposed from question-answering tasks, which may introduce lexical overlap biases between queries and relevant documents, and typically yield only a single relevant document per query. This dataset is intended for evaluating retrieval embedding models and is not recommended for training embedding models, as doing so would compromise the benchmark's integrity.",
+  "rai:dataBiases": "The benchmark has a geographic and linguistic skew toward English-speaking and Western European contexts. Legal datasets are drawn from Indian, German, French, and Japanese jurisdictions, which may not generalize to other legal systems. Healthcare datasets are predominantly English-language medical dialogues, which may reflect Western medical practices. Financial datasets are English-centric and may reflect biases toward US/Western financial instruments. Code datasets are skewed toward Python and popular programming languages. The agentic code datasets inherit biases from GitHub, which overrepresents open-source projects from certain demographics and geographies.",
+  "rai:personalSensitiveInformation": "Healthcare datasets contain medical questions and dialogues that may include health-related information, though these are sourced from publicly available QA platforms and do not contain personally identifiable information. Legal datasets contain court documents that are public records. Financial datasets contain publicly available financial reports and QA pairs. No datasets contain private personal data such as names, addresses, or demographic identifiers linked to individuals.",
+  "rai:dataUseCases": "RTEB is designed to measure the retrieval accuracy of text embedding models across diverse real-world domains. The construct being measured is a model's ability to rank relevant documents highly for a given query, as captured by NDCG@10 and Recall at various cutoffs. Validity has been established for: evaluating and comparing embedding models for retrieval tasks, identifying domain-specific weaknesses, and measuring generalization to unseen data via the private dataset partition. Validity has not been established for: evaluating embedding models on non-retrieval tasks, evaluating multimodal models, or predicting production performance in specific enterprise settings.",
+  "rai:dataSocialImpact": "Positive: RTEB provides a more reliable benchmark for embedding model evaluation, reducing the risk that practitioners deploy models based on inflated benchmark scores. By keeping datasets private, it discourages overfitting and promotes genuine progress in retrieval quality. The inclusion of specialized domains (legal, healthcare, finance) encourages development of models that serve high-stakes applications. Negative: Benchmark results could be misinterpreted as definitive measures of model quality in production settings. Models that perform well on RTEB may still fail in specific deployment contexts.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": "https://huggingface.co/datasets/clinia/CUREv1",
+  "prov:wasGeneratedBy": {
+    "preprocessing": "For QA-repurposed datasets, questions were extracted as queries and context passages as documents. For agentic code datasets, GitHub issues (title + body) were extracted as queries, and repository files were used as the document corpus. Filtering criteria were applied: issues shorter than 10 characters were removed, and issues where all edited files were newly created were excluded. A subset of datasets was manually verified by the authors for accuracy and label quality.",
+    "data_collection": "Public datasets were sourced from HuggingFace. Private datasets were curated from publicly available sources including government legal repositories (e.g., Japanese e-Gov, French OPENDATA/JADE), medical dialogue corpora, financial QA datasets, and GitHub repositories. The agentic code datasets were derived from existing SWE-bench style benchmarks collected by mining GitHub issues or generating synthetic bugs.",
+    "data_annotation": "Most datasets retain the original annotations from their source. For repurposed QA datasets, relevance labels are derived from the original QA pairs — the context passage associated with a question is treated as the relevant document. Several private datasets underwent additional manual verification by the authors. No new crowd-sourced annotation was performed."
+  }
+}

@@ -1,0 +1,447 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataBiases": "cr:dataBiases",
+    "dataCollection": "cr:dataCollection",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "isArray": "cr:isArray",
+    "personalSensitiveInformation": "cr:personalSensitiveInformation",
+    "containedIn": "cr:containedIn"
+  },
+  "@type": "sc:Dataset",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "repo",
+      "name": "repo",
+      "description": "The Hugging Face git repository.",
+      "contentUrl": "https://huggingface.co/datasets/SWE-bench-Live/SWE-bench-Live/tree/refs%2Fconvert%2Fparquet",
+      "encodingFormat": "git+https",
+      "sha256": "https://github.com/mlcommons/croissant/issues/80"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-default",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "default/*/*.parquet"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "default_splits/split_name"
+      },
+      "@id": "default_splits",
+      "name": "default_splits",
+      "description": "Splits for the default config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "default_splits/split_name": "test"
+        },
+        {
+          "default_splits/split_name": "lite"
+        },
+        {
+          "default_splits/split_name": "verified"
+        },
+        {
+          "default_splits/split_name": "full"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "default",
+      "description": "SWE-bench-Live/SWE-bench-Live - 'default' subset\n\nAdditional information:\n- 4 splits: test, lite, verified, full\n- 1 skipped column: created_at",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "default/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "default/(?:partial-)?(test|lite|verified|full)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "default_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/repo",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "repo"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/pull_number",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "pull_number"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/instance_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "instance_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/issue_numbers",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "issue_numbers"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/base_commit",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "base_commit"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/patch",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "patch"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/test_patch",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "test_patch"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/problem_statement",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "problem_statement"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/hints_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "hints_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/all_hints_text",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "all_hints_text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/commit_urls",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "commit_urls"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/commit_url",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "commit_url"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/test_cmds",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "test_cmds"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/log_parser",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "log_parser"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/difficulty",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "default/difficulty/files",
+              "dataType": "cr:Int64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "difficulty"
+                },
+                "transform": {
+                  "jsonPath": "files"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/difficulty/hunks",
+              "dataType": "cr:Int64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "difficulty"
+                },
+                "transform": {
+                  "jsonPath": "hunks"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "default/difficulty/lines",
+              "dataType": "cr:Int64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-default"
+                },
+                "extract": {
+                  "column": "difficulty"
+                },
+                "transform": {
+                  "jsonPath": "lines"
+                }
+              }
+            }
+          ],
+          "name": "difficulty",
+          "description": "Task difficulty label.",
+          "dataType": "sc:Text",
+          "value": "medium"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/FAIL_TO_PASS",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "FAIL_TO_PASS"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "default/PASS_TO_PASS",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-default"
+            },
+            "extract": {
+              "column": "PASS_TO_PASS"
+            }
+          },
+          "isArray": true,
+          "arrayShape": "-1"
+        }
+      ]
+    }
+  ],
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.1",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "name": "SWE-bench-Live",
+  "description": "\n  \n    \n  \n\n\n\n  A brand-new, continuously updated SWE-bench-like dataset powered by an automated curation pipeline.\n\n\n\nFor the official data release page, please see microsoft/SWE-bench-Live.\n\n\t\n\t\t\n\t\n\t\n\t\tDataset Summary\n\t\n\nSWE-bench-Live is a live benchmark for issue resolving, designed to evaluate an AI system’s ability to complete real-world software engineering tasks. Thanks to our automated dataset curation pipeline, we plan to update SWE-bench-Live on a monthly basis to provide the… See the full description on the dataset page: https://huggingface.co/datasets/SWE-bench-Live/SWE-bench-Live.",
+  "alternateName": [
+    "SWE-bench-Live/SWE-bench-Live"
+  ],
+  "creator": {
+    "@type": "Organization",
+    "name": "SWE-bench-Live",
+    "url": "https://huggingface.co/SWE-bench-Live"
+  },
+  "keywords": [
+    "mit",
+    "1K - 10K",
+    "parquet",
+    "Text",
+    "Datasets",
+    "Dask",
+    "Croissant",
+    "Polars",
+    "🇺🇸 Region: US"
+  ],
+  "license": "https://choosealicense.com/licenses/mit/",
+  "url": "https://huggingface.co/datasets/SWE-bench-Live/SWE-bench-Live",
+  "rai:dataLimitations": "This dataset is part of RTEB, a retrieval-focused text embedding benchmark. RTEB currently covers four languages (English, German, Japanese, French), with English being dominant. Low-resource languages and major languages like Chinese and Arabic are not represented. The benchmark is text-only and does not cover multimodal retrieval. Approximately half of the datasets are repurposed from question-answering tasks, which may introduce lexical overlap biases between queries and relevant documents, and typically yield only a single relevant document per query. This dataset is intended for evaluating retrieval embedding models and is not recommended for training embedding models, as doing so would compromise the benchmark's integrity.",
+  "rai:dataBiases": "The benchmark has a geographic and linguistic skew toward English-speaking and Western European contexts. Legal datasets are drawn from Indian, German, French, and Japanese jurisdictions, which may not generalize to other legal systems. Healthcare datasets are predominantly English-language medical dialogues, which may reflect Western medical practices. Financial datasets are English-centric and may reflect biases toward US/Western financial instruments. Code datasets are skewed toward Python and popular programming languages. The agentic code datasets inherit biases from GitHub, which overrepresents open-source projects from certain demographics and geographies.",
+  "rai:personalSensitiveInformation": "Healthcare datasets contain medical questions and dialogues that may include health-related information, though these are sourced from publicly available QA platforms and do not contain personally identifiable information. Legal datasets contain court documents that are public records. Financial datasets contain publicly available financial reports and QA pairs. No datasets contain private personal data such as names, addresses, or demographic identifiers linked to individuals.",
+  "rai:dataUseCases": "RTEB is designed to measure the retrieval accuracy of text embedding models across diverse real-world domains. The construct being measured is a model's ability to rank relevant documents highly for a given query, as captured by NDCG@10 and Recall at various cutoffs. Validity has been established for: evaluating and comparing embedding models for retrieval tasks, identifying domain-specific weaknesses, and measuring generalization to unseen data via the private dataset partition. Validity has not been established for: evaluating embedding models on non-retrieval tasks, evaluating multimodal models, or predicting production performance in specific enterprise settings.",
+  "rai:dataSocialImpact": "Positive: RTEB provides a more reliable benchmark for embedding model evaluation, reducing the risk that practitioners deploy models based on inflated benchmark scores. By keeping datasets private, it discourages overfitting and promotes genuine progress in retrieval quality. The inclusion of specialized domains (legal, healthcare, finance) encourages development of models that serve high-stakes applications. Negative: Benchmark results could be misinterpreted as definitive measures of model quality in production settings. Models that perform well on RTEB may still fail in specific deployment contexts.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": "https://huggingface.co/datasets/SWE-bench-Live/SWE-bench-Live",
+  "prov:wasGeneratedBy": {
+    "preprocessing": "For QA-repurposed datasets, questions were extracted as queries and context passages as documents. For agentic code datasets, GitHub issues (title + body) were extracted as queries, and repository files were used as the document corpus. Filtering criteria were applied: issues shorter than 10 characters were removed, and issues where all edited files were newly created were excluded. A subset of datasets was manually verified by the authors for accuracy and label quality.",
+    "data_collection": "Public datasets were sourced from HuggingFace. Private datasets were curated from publicly available sources including government legal repositories (e.g., Japanese e-Gov, French OPENDATA/JADE), medical dialogue corpora, financial QA datasets, and GitHub repositories. The agentic code datasets were derived from existing SWE-bench style benchmarks collected by mining GitHub issues or generating synthetic bugs.",
+    "data_annotation": "Most datasets retain the original annotations from their source. For repurposed QA datasets, relevance labels are derived from the original QA pairs — the context passage associated with a question is treated as the relevant document. Several private datasets underwent additional manual verification by the authors. No new crowd-sourced annotation was performed."
+  }
+}
