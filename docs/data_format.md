@@ -47,8 +47,10 @@ Optional fields:
 
 - `title`: document title. If present, evaluators may prepend it to `text`.
 - `metadata`: object with non-scoring metadata.
-- `chunks`: list of chunk objects for chunked document embedding. Each chunk
-  should have `id` and `text`.
+The current loader ignores `metadata` and does not implement chunked embedding.
+For agentic-code evaluation, each task directory must contain only the candidate
+files for its issue/repository snapshot. Use separate directories for queries
+with different candidate corpora; do not pool their files.
 
 ## Relevance
 
@@ -84,7 +86,9 @@ prefixes.
 }
 ```
 
-If omitted, the evaluator uses the default retrieval instructions.
+Prefixes are applied only when `--add-instructions` is passed. With that flag,
+missing custom instructions fall back to the default prefixes; without it, no
+instruction is prepended.
 
 ## Public And Private Tasks
 
@@ -110,11 +114,12 @@ The evaluator writes:
   retrieve_eval.json
 ```
 
-`retrieve_pred.json` maps each query id to ranked document scores:
+`retrieve_pred.json` maps each query id to descending rank-derived scores
+(`top_k - rank`, with rank starting at zero), not raw model similarities:
 
 ```json
 {
-  "q1": {"d1": 0.92, "d2": 0.31}
+  "q1": {"d1": 100.0, "d2": 99.0}
 }
 ```
 

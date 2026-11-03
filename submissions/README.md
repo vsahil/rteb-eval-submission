@@ -11,10 +11,15 @@ Each submission is a subdirectory containing:
    - `APIModel` — for proprietary models behind an API
 
 2. **Public-dataset results** — the JSON output from running on all public
-   datasets (`python -m rteb.evaluate --output results/`).
+   datasets. The general CLI requires `--model` and `--model-type`, for example
+   `python -m rteb.evaluate --model bm25 --model-type bm25 --output results/`.
+   See the repository release status for the data preparation still required.
+   Copy submitted results into `submissions/<model>/`; top-level `results/` is ignored.
 
 3. **A brief model card** — model name, distance metric (default: cosine),
-   and any special instructions for running the model.
+   and any special instructions for running the model. Include the training
+   corpora used, or explicitly state **undisclosed**. Provide API credential
+   environment-variable names, never credential values.
 
 ## Expected Model Interface
 

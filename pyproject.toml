@@ -7,6 +7,7 @@ name = "rteb"
 version = "0.1.0"
 description = "RTEB: Retrieval Text Embedding Benchmark"
 readme = "README.md"
+authors = [{name = "RTEB authors"}]
 license = {text = "Apache-2.0"}
 requires-python = ">=3.10"
 dependencies = [
@@ -22,6 +23,10 @@ dependencies = [
     "tqdm>=4.65.0",
     "pandas>=2.0.0",
 ]
+
+[project.urls]
+Repository = "https://github.com/vsahil/rteb-eval-submission"
+Issues = "https://github.com/vsahil/rteb-eval-submission/issues"
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0.0"]

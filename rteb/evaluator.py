@@ -82,8 +82,12 @@ class RTEBEvaluator:
             try:
                 dataset = load_dataset(dataset_name, cache_dir=self.cache_dir)
             except Exception as e:
-                print(f"  ERROR loading {dataset_name}: {e}")
-                continue
+                raise RuntimeError(
+                    f"Failed to load {dataset_name}; evaluation stopped to avoid "
+                    "reporting an aggregate over an incomplete benchmark."
+                ) from e
+            if not dataset.queries or not dataset.corpus or not dataset.qrels:
+                raise ValueError(f"{dataset_name} has empty queries, corpus, or qrels")
 
             # Run retrieval
             if isinstance(model, BM25Model):
@@ -169,7 +173,7 @@ class RTEBEvaluator:
             output_path: Path to save the JSON file
             model_name: Optional model name to include in the output
         """
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
 
         output = {
             "model_name": model_name,

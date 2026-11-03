@@ -2,6 +2,19 @@
 
 RTEB is a retrieval-focused text embedding benchmark with private evaluation datasets to prevent overfitting. This repository contains the evaluation framework for benchmarking embedding models on RTEB.
 
+## Release status
+
+This repository accompanies **RTEB: Towards Overfitting-Resistant Evaluation for
+Embedding Models**. The paper includes 20 public datasets and 28 private datasets.
+The local agentic-code evaluator and toy fixture provide a runnable evaluation
+path. The Hugging Face loaders are preliminary: dataset-specific preprocessing,
+exact splits, and prepared public retrieval data must be verified against the
+paper before using their outputs as reproductions of its results.
+
+For the local agentic-code path, use a separate task directory for each issue's
+candidate corpus. Combining files from different repository snapshots changes
+the retrieval problem. See [the data format](docs/data_format.md).
+
 ## Key Features
 
 - **Retrieval-focused**: Evaluates embedding models specifically on retrieval tasks
@@ -14,8 +27,8 @@ RTEB is a retrieval-focused text embedding benchmark with private evaluation dat
 
 ```bash
 # Clone the repository
-git clone https://github.com/<anonymous>/rteb-eval.git
-cd rteb-eval
+git clone https://github.com/vsahil/rteb-eval-submission.git
+cd rteb-eval-submission
 
 # Install dependencies
 pip install -r requirements.txt
@@ -35,7 +48,7 @@ from rteb.models import SentenceTransformerModel
 # Load your model
 model = SentenceTransformerModel("sentence-transformers/all-MiniLM-L6-v2")
 
-# Run evaluation on all public datasets
+# General evaluation API (requires verified dataset adapters; see Release status)
 evaluator = RTEBEvaluator()
 results = evaluator.evaluate(model)
 
@@ -46,8 +59,8 @@ evaluator.print_results(results)
 ### 2. Evaluate a custom open-source model
 
 ```python
+from rteb import RTEBEvaluator
 from rteb.models import OpenSourceModel
-import torch
 
 class MyCustomModel(OpenSourceModel):
     def __init__(self):
@@ -72,12 +85,14 @@ results = evaluator.evaluate(model)
 ### 3. Evaluate a proprietary API model
 
 ```python
+import os
+from rteb import RTEBEvaluator
 from rteb.models import APIModel
 
 class MyAPIModel(APIModel):
     def __init__(self):
         super().__init__(model_name="my-api-model")
-        self.api_key = "..."
+        self.api_key = os.environ["EMBEDDING_API_KEY"]
 
     def embed_query(self, query: str) -> list[float]:
         # Call your API here
@@ -162,8 +177,8 @@ DATA_PATH=/path/to/data OUTPUT_PATH=/tmp/out MODEL_TYPE=sentence-transformer \
     bash scripts/run_agentic_coding_eval.sh
 ```
 
-Both paths write `retrieve_pred.json`, `retrieve_eval.json`, and `summary.json`
-per task.
+Both paths write `retrieve_pred.json` and `retrieve_eval.json` per task,
+plus `summary.json` in the output root.
 
 > **Note:** The local evaluation path currently supports agentic-coding retrieval
 > tasks only. Loaders for non-agentic text benchmarks will be added in a future
@@ -192,7 +207,12 @@ python -m rteb.evaluate \
 Your PR should include:
 1. Your model implementation (in `submissions/`)
 2. The distance metric to use (default: cosine similarity)
-3. Results on all public datasets (in `results/`)
+3. Public evaluation results (under your `submissions/<model>/` directory; the
+   top-level `results/` directory is ignored by Git)
+4. Training-corpus declaration, or an explicit **undisclosed** statement
+
+Full public evaluation requires the verified data preparation described in
+**Release status**. Toy-fixture results are not benchmark submissions.
 
 ### Step 4: Private evaluation
 
@@ -224,12 +244,12 @@ python -m rteb.evaluate_agentic_coding \
     --output /tmp/rteb-agentic-toy
 ```
 
-The last command should produce `retrieve_pred.json`, `retrieve_eval.json`, and
-`summary.json` under `/tmp/rteb-agentic-toy/toy_task/`.
+The last command produces `retrieve_pred.json` and `retrieve_eval.json` under
+`/tmp/rteb-agentic-toy/toy_task/`, and `summary.json` under `/tmp/rteb-agentic-toy/`.
 
 ## Dataset Metadata
 
-Croissant metadata files for each public dataset are provided in the
+Croissant metadata for the 20 public datasets and 28 private dataset descriptions is provided in the
 [`croissant/`](croissant/) directory. To validate a metadata file:
 
 ```bash
@@ -240,7 +260,7 @@ mlcroissant validate --jsonld croissant/<dataset>_croissant.json
 ## Repository Structure
 
 ```
-rteb-eval/
+rteb-eval-submission/
 ├── LICENSE
 ├── README.md
 ├── requirements.txt
@@ -293,16 +313,13 @@ are evaluated server-side by the RTEB organizers.
 | General | JaQuAD | Japanese | Question → passage |
 | Legal | AILACasedocs | English | Scenario → case document |
 | Legal | AILAStatutes | English | Scenario → statute |
-| Legal | LegalSummarization | English | Excerpt → summary |
+| Legal | LegalSummarization | English | Summary → legal document |
 | Legal | LegalQuAD | German | Question → legal document |
 | Finance | FinanceBench | English | Question → document excerpt |
 | Finance | HC3Finance | English | Question → response |
 | Finance | FinQA | English | Question → report evidence |
 | Healthcare | ChatDoctor | English | Question → passage |
-| Healthcare | HC3 Medicine | English | Question → response |
-| Healthcare | HC3 French OOD | French | Question → response |
-| Healthcare | Cure | English | Query → passage |
-| Healthcare | TripClick | English | Search query → document |
+| Healthcare | Cure | English, French, Spanish | Query → passage |
 | Code | HumanEval | English | Text → code |
 | Code | MBPP | English | Text → code |
 | Code | APPS | English | Text → code |
@@ -320,8 +337,22 @@ are evaluated server-side by the RTEB organizers.
 ## Metrics
 
 - **Primary**: NDCG@10 (displayed on leaderboard)
-- **Additional**: {NDCG, Recall}@{1, 3, 5, 10, 20, 40, 100}
+- **Additional**: {NDCG, Recall}@{1, 3, 5, 10, 20, 50, 100}
 
+The current implementation computes @50; the paper protocol lists @40. This
+secondary cutoff must be reconciled with the original evaluation scripts before
+release. NDCG@10 is unaffected.
+
+
+## Authors and support
+
+Sahil Verma, Minghan Li, Andrew Gaut, Yujie Qian, Kaidi Cao, Zhenmei Shi,
+Kenneth Enevoldsen, Roman Solomatin, Isaac Chung, Tom Aarsen, Apoorva Joshi,
+Emilia Garcia-Casademont, Michael Günther, Niklas Muennighoff, Yevhen Kostiuk,
+Fődi Zoltán, Tengyu Ma, and Frank Liu.
+
+This work was funded by Voyage AI. Upstream dataset creators retain credit for
+their datasets; source attribution is recorded in the Croissant metadata.
 
 ## License
 

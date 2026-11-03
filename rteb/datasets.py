@@ -78,27 +78,8 @@ DATASET_REGISTRY = {
         "language": "english",
         "qa_repurposed": False,
     },
-    "HC3Medicine": {
-        "hf_path": "Hello-SimpleAI/HC3",
-        "hf_subset": "medicine",
-        "domain": "healthcare",
-        "language": "english",
-        "qa_repurposed": False,
-    },
-    "hc3_french_ood": {
-        "hf_path": "almanach/hc3_french_ood",
-        "domain": "healthcare",
-        "language": "french",
-        "qa_repurposed": False,
-    },
     "CUREv1": {
         "hf_path": "clinia/CUREv1",
-        "domain": "healthcare",
-        "language": "english",
-        "qa_repurposed": False,
-    },
-    "tripclick": {
-        "hf_path": "irds/tripclick",
         "domain": "healthcare",
         "language": "english",
         "qa_repurposed": False,

@@ -19,13 +19,11 @@ def main():
     parser.add_argument(
         "--model",
         type=str,
-        required=True,
         help="Model name or path (e.g., 'sentence-transformers/all-MiniLM-L6-v2' or 'bm25')",
     )
     parser.add_argument(
         "--model-type",
         type=str,
-        required=True,
         choices=["sentence-transformer", "bm25"],
         help="Type of model to evaluate",
     )
@@ -100,6 +98,9 @@ def main():
             for name in datasets:
                 print(f"    - {name}")
         return
+
+    if not args.model or not args.model_type:
+        parser.error("--model and --model-type are required for evaluation")
 
     # Load model
     if args.model_type == "sentence-transformer":

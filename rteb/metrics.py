@@ -59,11 +59,9 @@ def compute_metrics(
         metrics[f"ndcg_at_{k}"] = []
         metrics[f"recall_at_{k}"] = []
 
-    for query_id, ranked_doc_ids in query_results.items():
-        if query_id not in qrels:
-            continue
-
-        query_rels = qrels[query_id]
+    # Every judged query contributes, including queries with no predictions.
+    for query_id, query_rels in qrels.items():
+        ranked_doc_ids = query_results.get(query_id, [])
         relevant_ids = {doc_id for doc_id, rel in query_rels.items() if rel > 0}
         ideal_relevances = sorted(
             (rel for rel in query_rels.values() if rel > 0),
